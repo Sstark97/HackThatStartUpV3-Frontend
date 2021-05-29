@@ -3,6 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { GitHubProfile } from '../components/GitHubProfile'
 import Link from 'next/link'
+import Login from './login'
 
 export default function Home() {
   return (
@@ -14,8 +15,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Link href="/home">Home</Link>
-        <GitHubProfile />
+        <Login />
       </main>
 
     </div>

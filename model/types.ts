@@ -18,3 +18,9 @@ export interface ProfileProps {
     html_url:string,
     id:string
 }
+
+export interface User {
+    name:string,
+    email:string,
+    password:string
+}
