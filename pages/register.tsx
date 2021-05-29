@@ -40,10 +40,9 @@ export default function Login() {
           if(data.length !== 0){
               throw 'Existe un usuario';
           }
-          const user: User = {name: name,email: email,password: password}
+          const user: User = {name: name,email: email,password: parseInt(password,10)}
           await axios.post<User>(`http://localhost:3004/users`,user);
       } catch (err) {
-        console.log('jdjd')
         setError(true);
         emailRef.current.value = '';
         passwordRef.current.value = '';

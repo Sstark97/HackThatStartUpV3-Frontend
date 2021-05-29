@@ -55,6 +55,7 @@ export function GitHubProfile(){
     function handleNextRepos(){
         const newPos:number = index + 8;
         const repos:Repo[] = reposRender.slice(index,newPos);
+        console.log(newPos)
         setIndex(newPos);
         setReposToShow(repos);
     }
@@ -63,28 +64,31 @@ export function GitHubProfile(){
         const newPos:number = index - 8;
         const prePos:number = index - 16;
         const repos:Repo[] = reposRender.slice(prePos,newPos);
-        setIndex(prePos);
+        console.log(prePos)
+        setIndex(newPos);
         setReposToShow(repos);
     }
 
-    return <>
+    return <>   
                 {profileRender.login === 'Hola' 
                     ?
                     <>
-                        <input type="text" placeholder="Introduce your github" ref={profileRef} />
-                        <button onClick={profileToSearch}>Search</button>
+                        <input className="form-control w-25" type="text" placeholder="Introduce your github" ref={profileRef} />
+                        <button className="btn btn-primary" onClick={profileToSearch}>Search</button>
                     </>
                     :
                     <div className="d-flex w-75">
-                
+                        
                         <div className="card h-25">
                 
                             <img src={profileRender.avatar_url} className="card-img-top" alt="..." />
                             <div className="card-body w-100 p-3">
                                 <h5 className="card-title">User: {profileRender.login}</h5>
                                 <p className="card-subtitle">Repos: {profileRender.public_repos}</p>
-                                <input type="text" placeholder="Introduce your github" ref={profileRef} />
-                                <button onClick={profileToSearch}>Search</button>
+                                <div className="d-flex flex-column align-items-center mt-2">
+                                    <input className="form-control" type="text" placeholder="Introduce your github" ref={profileRef} />
+                                    <button className="btn btn-primary w-25 mt-2" onClick={profileToSearch}>Search</button>
+                                </div>
                                 {/* <a href={html_url} className="btn btn-primary">Go to Repo</a> */}
                             </div>
                 
@@ -100,8 +104,21 @@ export function GitHubProfile(){
                             </div>
                             <div className="d-flex w-100 justify-content-center mt-4">
                                 <div className="d-flex w-25">
-                                    <button className="btn btn-primary w-25 m-2" onClick={handlePrevRepos}>Prev</button>
-                                    <button className="btn btn-primary w-25 m-2" onClick={handleNextRepos}>Next</button>
+                                    {
+                                        index !== 8 
+                                        ?
+                                        <button className="btn btn-primary w-25 m-2" onClick={handlePrevRepos}>Prev</button>
+                                        :
+                                        <></>
+                                    }
+                                    {
+                                        index < reposRender.length
+                                        ?
+                                        <button className="btn btn-primary w-25 m-2" onClick={handleNextRepos}>Next</button>
+                                        :
+                                        <></>
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>

@@ -33,10 +33,9 @@ export default function Login() {
       try{
           const res = await axios.get<User[]>(`http://localhost:3004/users?email=${email}`);
           const data:User[] = res.data;
-          console.log(data)
           const user: User = data[0];
-          console.log(user)
-          if(email !== user.email || password !== user.password){
+
+          if(email !== user.email || parseInt(password,10) !== user.password){
             throw 'Some error';
           }
           
