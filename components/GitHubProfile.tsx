@@ -94,8 +94,8 @@ export function GitHubProfile(){
                 
                         </div>
             
-                        <div className= "container">
-                            <div className="row">
+                        <div className= "container-fluid">
+                            <div className="row col-xs-4">
                                 {
                                     reposToShow.map(repo => {
                                         return <GitHubRepos key={uuidv4()} name={repo.name} description = {repo.description} html_url = {repo.html_url} id = {repo.id}/>

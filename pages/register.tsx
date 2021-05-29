@@ -12,6 +12,7 @@ import Router from 'next/router';
 
 export default function Login() {
   const [error, setError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('El usuario ya existe')
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -39,10 +40,17 @@ export default function Login() {
           const data:User[] = res.data;
           if(data.length !== 0){
               throw 'Existe un usuario';
+          } else if(!email.match(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)){
+              throw 'No es un correo';
           }
           const user: User = {name: name,email: email,password: parseInt(password,10)}
           await axios.post<User>(`http://localhost:3004/users`,user);
       } catch (err) {
+        if(err === 'No es un correo'){
+            setErrorMessage('Introduce un correo valido');
+        } else if( err === 'Existe un usuario'){
+            setErrorMessage('El usuario ya existe');
+        }
         setError(true);
         emailRef.current.value = '';
         passwordRef.current.value = '';
@@ -82,7 +90,7 @@ export default function Login() {
       {error 
         ?
         <div className="alert alert-danger" role="alert">
-          The user just exist
+          {errorMessage}
         </div>
         :
         <></>
