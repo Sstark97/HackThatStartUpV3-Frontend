@@ -1,4 +1,3 @@
-import react from 'react';
 import { useState, useRef } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 import axios from 'axios'
@@ -8,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export function GitHubProfile(){
 
-    const [profileRender, setProfile] = useState<Profile>({login:"Hola",avatar_url:"fewf",repos_url:'',public_repos:0})
+    const [profileRender, setProfile] = useState<Profile>({login:"Hola",avatar_url:"",repos_url:'',public_repos:0})
     const [reposRender, setRepos] = useState<Repo[]>([]);
     const [reposToShow, setReposToShow] = useState<Repo[]>([]);
     const [index, setIndex] = useState(8);
