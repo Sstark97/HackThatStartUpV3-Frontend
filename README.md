@@ -1,34 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HackTheStartUpV3-Frontend 
 
-## Getting Started
+------------
 
-First, run the development server:
+## Description
+This is the application that represents the frontend challenge of HackTheStartUpV3
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+------------
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Challenge
+# Parte 1
+- Crear un proyecto basado en ReactJS utilizando los estilos que más os gusten 
+- Cread una vista desde dónde el usuario pueda introducir su nombre de github y se le muestren sus respositorios en formato grid.
+- Cread una card para mostrar el avatar, el nombre usuario y el número de repositorios que tiene en github.
+- Utilizad la API de github para poder hacer fetch de los datos de un usarios 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+# Parte 2
+- Hacer que esas vistas sean lo más responsive posibles y puedan ser visibiles desde PC y móvil
+- Crear las vistas de Login y Register y que redirijan a la vista que hemos hecho anteriormente
+-Finalmente, haced deploy del proyecto dónde mejor os pareza, algunos ejemplo:
+    - Vercel
+    - Github pages
+    - Netlify
+    - Digital Ocen
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Documentar el proyecto 
+- Refactor del código
