@@ -11,7 +11,7 @@ export function GitHubProfile(){
     const [profileRender, setProfile] = useState<Profile>({login:"Hola",avatar_url:"fewf",repos_url:'',public_repos:0})
     const [reposRender, setRepos] = useState<Repo[]>([]);
     const [reposToShow, setReposToShow] = useState<Repo[]>([]);
-    const [index, setIndex] = useState(5);
+    const [index, setIndex] = useState(8);
     const profileRef = useRef<HTMLInputElement>(null);
 
     async function profileToSearch() {
@@ -43,57 +43,74 @@ export function GitHubProfile(){
         const data:Repo[] = res.data;
 
         const repos:Repo[] = data.map(repo => {
-            return {name:repo.name, description: repo.description, html_url:repo.html_url}
+            return {name:repo.name, description: repo.description, html_url:repo.html_url,id:repo.id}
         });
 
         setRepos(repos);
-        setReposToShow(repos.slice(0,index))
+        console.log(index);
+        setReposToShow(repos.slice(0,8));
+        setIndex(8);
     }
 
     function handleNextRepos(){
-        const newPos:number = index + 5;
+        const newPos:number = index + 8;
         const repos:Repo[] = reposRender.slice(index,newPos);
         setIndex(newPos);
         setReposToShow(repos);
     }
 
     function handlePrevRepos(){
-        const newPos:number = index - 5;
-        const prePos:number = index - 10;
+        const newPos:number = index - 8;
+        const prePos:number = index - 16;
         const repos:Repo[] = reposRender.slice(prePos,newPos);
         setIndex(prePos);
         setReposToShow(repos);
     }
 
     return <>
-        <input type="text" placeholder="Introduce your github" ref={profileRef} />
-        <button onClick={profileToSearch}>Search</button>
-        <div className="d-flex w-75">
-        <div className="card h-25">
-            <img src={profileRender.avatar_url} className="card-img-top" alt="..." />
-            <div className="card-body">
-                <h5 className="card-title">{profileRender.login}</h5>
-                <p className="card-subtitle">{profileRender.public_repos}</p>
-                        {/* <a href={html_url} className="btn btn-primary">Go to Repo</a> */}
-            </div>
-        </div>
+                {profileRender.login === 'Hola' 
+                    ?
+                    <>
+                        <input type="text" placeholder="Introduce your github" ref={profileRef} />
+                        <button onClick={profileToSearch}>Search</button>
+                    </>
+                    :
+                    <div className="d-flex w-75">
+                
+                        <div className="card h-25">
+                
+                            <img src={profileRender.avatar_url} className="card-img-top" alt="..." />
+                            <div className="card-body w-100 p-3">
+                                <h5 className="card-title">User: {profileRender.login}</h5>
+                                <p className="card-subtitle">Repos: {profileRender.public_repos}</p>
+                                <input type="text" placeholder="Introduce your github" ref={profileRef} />
+                                <button onClick={profileToSearch}>Search</button>
+                                {/* <a href={html_url} className="btn btn-primary">Go to Repo</a> */}
+                            </div>
+                
+                        </div>
             
-        <div className= "container">
-            <div className="row">
-                {
-                    reposToShow.map(repo => {
-                        return <GitHubRepos key={uuidv4()} name={repo.name} description = {repo.description} html_url = {repo.html_url}/>
-                    })
-                }
-            </div>
-            <div className="d-flex w-50">
-                <button className="btn btn-primary w-25" onClick={handlePrevRepos}>Prev</button>
-                <button className="btn btn-primary w-25" onClick={handleNextRepos}>Next</button>
-            </div>
-        </div>
+                        <div className= "container">
+                            <div className="row">
+                                {
+                                    reposToShow.map(repo => {
+                                        return <GitHubRepos key={uuidv4()} name={repo.name} description = {repo.description} html_url = {repo.html_url} id = {repo.id}/>
+                                    })
+                                }
+                            </div>
+                            <div className="d-flex w-100 justify-content-center mt-4">
+                                <div className="d-flex w-25">
+                                    <button className="btn btn-primary w-25 m-2" onClick={handlePrevRepos}>Prev</button>
+                                    <button className="btn btn-primary w-25 m-2" onClick={handleNextRepos}>Next</button>
+                                </div>
+                            </div>
+                        </div>
 
-        </div>
+                    </div>
             
-    </>
+
+                }
+        
+            </>
 
 }

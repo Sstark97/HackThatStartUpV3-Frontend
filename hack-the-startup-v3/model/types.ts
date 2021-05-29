@@ -8,11 +8,13 @@ export interface Profile {
 export interface Repo {
     name:string,
     description:string, 
-    html_url:string
+    html_url:string,
+    id:string
 }
 
 export interface ProfileProps {
     name:string,
     description:string, 
-    html_url:string
+    html_url:string,
+    id:string
 }
