@@ -1,7 +1,4 @@
-import react from 'react';
-import { useState, useRef } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
-import axios from 'axios'
 import { Profile, ProfileProps } from '../model/types'
 
 export function GitHubRepos({name, description, html_url, id} : ProfileProps) {

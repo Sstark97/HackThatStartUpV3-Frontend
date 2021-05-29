@@ -35,6 +35,11 @@ export default function Login() {
     console.log('hola')
     if(typeof email !== 'undefined' && typeof password !== 'undefined' && typeof name !== undefined){
       try{
+          const res = await axios.get<User[]>(`http://localhost:3004/users?email=${email}`);
+          const data:User[] = res.data;
+          if(data.length !== 0){
+              throw 'Existe un usuario';
+          }
           const user: User = {name: name,email: email,password: password}
           await axios.post<User>(`http://localhost:3004/users`,user);
       } catch (err) {
@@ -42,12 +47,14 @@ export default function Login() {
         setError(true);
         emailRef.current.value = '';
         passwordRef.current.value = '';
+        nameRef.current.value = '';
         setTimeout(() => setError(false),4000);
         return;
       }
       Router.push('/home');
       emailRef.current.value = '';
       passwordRef.current.value = '';
+      nameRef.current.value = '';
       
     }
   }
@@ -76,8 +83,7 @@ export default function Login() {
       {error 
         ?
         <div className="alert alert-danger" role="alert">
-          The user not exist, if you don't have<br/>
-          an account go to Register
+          The user just exist
         </div>
         :
         <></>
