@@ -11,12 +11,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import Router from 'next/router';
 
 export default function Login() {
-  const [user, setUser] = useState<User>();
+  const [error, setError] = useState<boolean>(false);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const router = useRouter()
 
-  async function handleLoginUser() : Promise<void> {
+  async function handleLoginUser(){
     if(emailRef === undefined || emailRef.current === undefined || emailRef.current === null){
       return;
     } else if(passwordRef === undefined || passwordRef.current === undefined || passwordRef.current === null){
@@ -38,11 +38,15 @@ export default function Login() {
           console.log(user)
           if(email !== user.email && password !== user.password){
             return;
-
           }
           
       } catch (err) {
-          console.log(err)
+        console.log('jdjd')
+        setError(true);
+        emailRef.current.value = '';
+        passwordRef.current.value = '';
+        setTimeout(() => setError(false),4000);
+        return;
       }
       Router.push('/home');
       emailRef.current.value = '';
@@ -66,11 +70,20 @@ export default function Login() {
           <div className="mb-3">
               <label className="form-label">Password</label>
               <input ref={passwordRef} type="password" className="form-control" id="exampleInputPassword1" />
-          </div>
-          
+          </div>    
       </form>
+      {error 
+        ?
+        <div className="alert alert-danger" role="alert">
+          The user not exist, if you don't have<br/>
+          an account go to Register
+        </div>
+        :
+        <></>
+      }
       <button onClick={handleLoginUser} className="btn btn-primary">Submit</button>
       </div>
+      
       
     </>
   )
