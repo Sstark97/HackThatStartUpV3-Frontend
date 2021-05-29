@@ -1,16 +1,22 @@
 {
-    "users": [
-      {
-        "name": "Aitor",
-        "email": "aitorscinfo@gmail.com",
-        "password": 12345,
-        "id": 1
-      },
-      {
-        "name": "Pepe",
-        "email": "pepe@gmail.com",
-        "password": 12345,
-        "id": 2
-      }
-    ]
-  }
+  "users": [
+    {
+      "name": "Aitor",
+      "email": "aitorscinfo@gmail.com",
+      "password": 12345,
+      "id": 1
+    },
+    {
+      "name": "Pepe",
+      "email": "pepe@gmail.com",
+      "password": 12345,
+      "id": 2
+    },
+    {
+      "name": "Juan",
+      "email": "juan@gmail.com",
+      "password": "543221",
+      "id": 3
+    }
+  ]
+}

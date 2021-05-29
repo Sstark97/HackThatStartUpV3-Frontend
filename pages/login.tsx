@@ -81,7 +81,11 @@ export default function Login() {
         :
         <></>
       }
-      <button onClick={handleLoginUser} className="btn btn-primary">Submit</button>
+      <div>
+            <button onClick={handleLoginUser} className="btn btn-primary me-3">Submit</button>
+            <button onClick={() => Router.push('/register')} className="btn btn-success">Register</button>
+      </div>
+
       </div>
       
       
