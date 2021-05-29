@@ -36,8 +36,8 @@ export default function Login() {
           console.log(data)
           const user: User = data[0];
           console.log(user)
-          if(email !== user.email && password !== user.password){
-            return;
+          if(email !== user.email || password !== user.password){
+            throw 'Some error';
           }
           
       } catch (err) {
